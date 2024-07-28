@@ -66,11 +66,11 @@ const getPersonalDetails = async (req, res) => {
       email: req.user.email,
     });
     if (!personalDetails) {
-      res.status(200).json({ message: "invalid user", success: false });
+    return  res.status(200).json({ message: "Fill personal details", success: false });
     }
-    res.status(200).json({ data: personalDetails, success: true });
+    return res.status(200).json({ data: personalDetails, success: true });
   } catch (error) {
-    res.json(500).json({ message: error, success: false });
+    return res.json(500).json({ message: error, success: false });
   }
 };
 

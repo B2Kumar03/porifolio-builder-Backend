@@ -4,7 +4,7 @@ const accessAuthMiddleware = async (req, res, next) => {
   try {
     
     const authHeader = req.headers.authorization;
-  
+    
     if (!authHeader) {
       res.status(401).json({ error: "Unauthorized", data: [] });
     }
@@ -17,6 +17,7 @@ const accessAuthMiddleware = async (req, res, next) => {
     const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
   
     const user = await User.findById(decodedToken?._id).select("-password -token");
+    
     if (!user) throw new ApiError(401, "Unauthorized user");
     req.user = user;
     next();

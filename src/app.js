@@ -25,4 +25,5 @@ app.use("/api/v1/users",aiRouter)
 
 app.use("/api/v1/users",resumeRoute)
 
+
 export default app;

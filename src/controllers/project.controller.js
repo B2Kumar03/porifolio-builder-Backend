@@ -1,6 +1,7 @@
 import { asyncHandler } from "../utils/asynchandler.js";
 import cloudinaryUpload from "../utils/cloudnaryUpload.js";
 import Project from "../models/project.model.js";
+import { assert } from "console";
 
 // Function to handle both create and update project
 const project = asyncHandler(async (req, res) => {
@@ -74,7 +75,6 @@ const project = asyncHandler(async (req, res) => {
 const getProject = asyncHandler(async (req, res) => {
   try {
     const user = req.user;
-
     if (!user || !user.email) {
       return res
         .status(400)
@@ -82,17 +82,86 @@ const getProject = asyncHandler(async (req, res) => {
     }
 
     const email = user.email;
-    const data = await Project.find({ email });
-
+    const data = await Project.find({
+      userId: email,
+    });
+    
     if (!data) {
       return res
         .status(404)
         .json({ message: "No projects found", success: false });
     }
 
-    res.status(200).json({ data, success: true });
+    const newData=data.map((ele)=>{
+      let teck=ele.techstack[0]
+      let arr=teck.split(",")
+      // console.log(ele);
+      ele.techstack=arr
+      return ele
+
+    })
+    console.log(newData);
+    res.status(200).json({data:newData, success: true });
   } catch (error) {
     res.status(500).json({ message: "Server error", success: false });
   }
 });
-export { project, getProject };
+
+const updateProject = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  const {
+    projectTitle,
+    projectDescription,
+    techstack,
+    userId,
+    demoLink,
+    githubLink,
+  } = req.body;
+
+  if (
+    !id ||
+    !projectTitle ||
+    !projectDescription ||
+    !techstack ||
+    !userId ||
+    !demoLink ||
+    !githubLink
+  ) {
+    return res
+      .status(400)
+      .json({ success: false, msg: "Please fill all the fields" });
+  }
+
+  const projectData = {
+    projectTitle,
+    projectDescription,
+    techstack,
+    githubLink,
+    demoLink,
+    userId,
+  };
+
+  const updatedProject = await Project.findByIdAndUpdate(
+    {_id:id},
+    { $set: projectData },
+    { new: true, runValidators: true }
+  );
+
+  if (!updatedProject) {
+    return res
+      .status(400)
+      .json({ success: false, msg: "Project update failed" });
+  }
+
+  return res.status(200).json({
+    success: true,
+    msg: "Project updated successfully",
+    data: updatedProject,
+  });
+});
+
+
+
+
+export { project, getProject,updateProject };

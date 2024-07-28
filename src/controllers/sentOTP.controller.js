@@ -10,7 +10,7 @@ const sentOTP = asyncHandler(async (req, res) => {
     await sendOTP(email, otp);
     res.status(200).json({ message: "OTP sent successfully",opt:otp });
   } catch (error) {
-    res.status(500).json({ message: "Error sending OTP", error });
+    return res.status(500).json({ message: "Error sending OTP", error });
   }
   
 });
