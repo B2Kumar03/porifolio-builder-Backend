@@ -36,67 +36,68 @@ app.use("/api/v1/users", resumeRoute);
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "views"));
 app.get("/:id", async (req, res) => {
-  const _id = req.params.id.split("+")[1];
-  const user = await User.findById(_id).select("-password -token");
-  if(!user){
-    return res.send("<h1>Check your portfolio URL")
-  }
-  const project = await Project.find({
-    userId: user.email,
-  });
-  const resume = await Resume.findOne({ email: user.email });
-  const personalDetails = await PersonalDetails.findOne({ email: user.email });
-  const skills = await Skills.findOne({ email: user.email });
-  console.log(user);
-  console.log(project);
-  console.log(resume);
-  console.log(personalDetails);
-  const newSkill = skills.skillsUrl.map((ele, index) => {
-    return { url: ele, name: skills.skillsName[index] };
-  });
-  const newProject = project.map((ele) => {
-    const n = ele.techstack[0].split(",");
-    return {
-      userId: ele.userId,
-      demoLink: ele.demoLink,
-      projectTitle: ele.projectTitle,
-      projectDescription: ele.projectDescription,
-      githubLink: ele.githubLink,
-      projectImage: ele.projectImage,
-      techstack: n,
-    };
-  });
-  let githubId = "";
-  for (let i = personalDetails.github.length - 1; i > 0; i--) {
-    if (personalDetails.github[i] != "/") {
-      githubId = githubId + personalDetails.github[i];
-    } else {
-      githubId=githubId.split("").reverse().join("")
-      break;
+  try {
+    const _id = req.params.id.split("+")[1];
+    const user = await User.findById(_id).select("-password -token");
+    if(!user){
+      return res.send("<h1>Check your portfolio URL")
     }
-  }
- 
-  const githubDat = await gihubData(githubId);
-  console.log(githubDat);
-  // const project = Project.find;
-  res.render("index", {
-    project_data: newProject,
-    techstack: newSkill,
-    contact: {
-      mobile: personalDetails.phoneNumber,
-      email: personalDetails.email,
-      linkedin: personalDetails.linkedIn,
-      github: personalDetails.github,
-    },
-    name: personalDetails.fullName,
-    role: skills.role,
-    role_description: skills.role_description,
-    about: personalDetails.summary,
-    resume_url: resume.url,
-    githuburl: personalDetails.github,
-    githubdata:githubDat,
-    avtar: user.avtar,
-  });
-});
+    const project = await Project.find({
+      userId: user.email,
+    });
+    const resume = await Resume.findOne({ email: user.email });
+    const personalDetails = await PersonalDetails.findOne({ email: user.email });
+    const skills = await Skills.findOne({ email: user.email });
+    
+    const newSkill = skills.skillsUrl.map((ele, index) => {
+      return { url: ele, name: skills.skillsName[index] };
+    });
+    const newProject = project.map((ele) => {
+      const n = ele.techstack[0].split(",");
+      return {
+        userId: ele.userId,
+        demoLink: ele.demoLink,
+        projectTitle: ele.projectTitle,
+        projectDescription: ele.projectDescription,
+        githubLink: ele.githubLink,
+        projectImage: ele.projectImage,
+        techstack: n,
+      };
+    });
+    let githubId = "";
+    for (let i = personalDetails.github.length - 1; i > 0; i--) {
+      if (personalDetails.github[i] != "/") {
+        githubId = githubId + personalDetails.github[i];
+      } else {
+        githubId=githubId.split("").reverse().join("")
+        break;
+      }
+    }
+   
+    const githubDat = await gihubData(githubId);
+    console.log(githubDat);
+    // const project = Project.find;
+    res.render("index", {
+      project_data: newProject,
+      techstack: newSkill,
+      contact: {
+        mobile: personalDetails.phoneNumber,
+        email: personalDetails.email,
+        linkedin: personalDetails.linkedIn,
+        github: personalDetails.github,
+      },
+      name: personalDetails.fullName,
+      role: skills.role,
+      role_description: skills.role_description,
+      about: personalDetails.summary,
+      resume_url: resume.url,
+      githuburl: personalDetails.github,
+      githubdata:githubDat,
+      avtar: user.avtar,
+    });
+  
+  } catch (error) {
+    return res.send("<h1>Check your portfolio URL")
+  }});
 
 export default app;
