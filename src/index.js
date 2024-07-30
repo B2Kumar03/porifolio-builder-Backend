@@ -4,6 +4,8 @@ import app from "./app.js";
  
 dotenv.config()
 
+
+
 const PORT = process.env.PORT || 8080;
 mongodbConnection()
 .then(() => {
@@ -18,3 +20,4 @@ mongodbConnection()
 .catch((err) => {
     console.log("DATABASE CONNECTION FAILED", err);
   });
+

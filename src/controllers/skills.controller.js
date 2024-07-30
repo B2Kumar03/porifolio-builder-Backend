@@ -1,11 +1,20 @@
 import { asyncHandler } from "../utils/asynchandler.js";
 // import Skill from "../models/skills.model.js"
 import Skills from "../models/skills.model.js";
+import { generator } from "./ai.controllers.js";
 
 const skillsController = asyncHandler(async (req, res) => {
   const { email } = req.user;
   const { skillsUrl, skillsName, role } = req.body;
-  console.log(email);
+  const prompt = `${role} write about this role for me. I will use it as a portfolio heading in 20 words, using these skills: ${skillsName.join(
+    ", "
+  )}`;
+
+  const role_description = await generator(prompt);
+  console.log(role_description);
+  if (role_description == null) {
+    return res.status(400).json({ message: "Role description not generated" });
+  }
   if (!skillsUrl || !skillsName || !role) {
     return res.status(400).json({ message: "Please provide skills" });
   }
@@ -20,13 +29,14 @@ const skillsController = asyncHandler(async (req, res) => {
           skillsUrl: skillsUrl,
           skillsName: skillsName,
           role: role,
+          role_description,
         },
       },
       { new: true, runValidators: true }
     );
     return res.status(200).json({ message: "Skills updated successfully" });
   }
-  const r = await Skills.create({ skillsUrl, skillsName, email, role });
+  const r = await Skills.create({ skillsUrl, skillsName, email, role,role_description });
   if (!r) {
     return res.status(400).json({ message: "Failed to create skills" });
   }
@@ -44,7 +54,7 @@ const getSkills = asyncHandler(async (req, res) => {
     return res.status(404).json({ message: "Skills not found" });
   }
 
- return  res.json({ skills });
+  return res.json({ skills });
 });
 
 export { skillsController, getSkills };

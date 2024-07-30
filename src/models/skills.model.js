@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { type } from "os";
 
 const skillsSchema = new mongoose.Schema(
   {
@@ -13,6 +14,11 @@ const skillsSchema = new mongoose.Schema(
       type:String,
       required:true,
       
+    },
+    role_description:{
+      type:String,
+      required:true,
+      trime:true
     }
   },
   

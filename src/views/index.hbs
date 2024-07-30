@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{name}}e</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    
+    <!-- Swiper.js CSS -->
+    
+    
+    <!-- Swiper.js JS -->
+
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: black;
+            overflow-x: hidden;
+        }
+        :root {
+            --primary-color: #0033A0; /* Classic Blue */
+            --secondary-color: #C8102E; /* Classic Red */
+            --accent-color: #FFFFFF; /* Classic White */
+        }
+
+        .card-image {
+            transition: transform 0.3s ease;
+        }
+
+        .card-image:hover {
+            transform: scale(1.1);
+        }
+
+        .group-hover\:scale-110 {
+            transition: transform 0.3s ease;
+        }
+
+        .group:hover .group-hover\:scale-110 {
+            transform: scale(1.1);
+        }
+
+        /* Apply classic colors */
+        .bg-primary {
+            background-color: var(--primary-color);
+        }
+
+        .text-primary {
+            color: var(--primary-color);
+        }
+
+        .bg-secondary {
+            background-color: var(--secondary-color);
+        }
+
+        .text-secondary {
+            color: var(--secondary-color);
+        }
+
+        .bg-accent {
+            background-color: var(--accent-color);
+        }
+
+        .text-accent {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner Section Start -->
+    <section class="w-full h-screen bg-[url('https://wallpapers.com/images/high/pc-pictures-8mkws4oetx2ljq8o.webp')] bg-center bg-cover">
+        <div class="w-full h-full bg-[rgba(0,0,0,0.8)] ">
+            <header class="lg:bg-[black] py-3 lg:fixed lg:top-0 lg:right-5 lg:text-[white] ">
+                <nav class="  flex justify-between items-center w-[92%] mx-auto  ">
+                  
+                    <div class="nav-links duration-500 md:static absolute d md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5 bg-[white] lg:bg-[black]">
+                        <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
+                            <li><a class="hover:text-gray-500 text-xl" href="#">Home</a></li>
+                            <li><a class="hover:text-gray-500 text-xl" href="#about">About</a></li>
+                            <li><a class="hover:text-gray-500 text-xl" href="#techstack">Skills</a></li>
+                            <li><a class="hover:text-gray-500 text-xl" href="#projects">Projects</a></li>
+                            <li><a class="hover:text-gray-500 text-xl" onclick="onToggleMenu(this)" href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center gap-6 md:hidden">
+                        <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer text-primary"></ion-icon>
+                    </div>
+                </nav>
+            </header>
+            <div class="max-w-[1117px] mx-auto sm:py-[150px] py-[50px] text-center text-accent ">
+                <h1 class="sm:text-[45px] text-[35px] font-bold mt-[100px]">Hi, I'm {{name}}</h1>
+                <h4 class="text-[25px] py-[20px]">{{role_description}}</h4>
+                <div class="max-w-[700px] mx-auto sm:px-[10px] px-[40px]">
+                    <form action="" class="grid sm:grid-cols-5 grid-cols-1 gap-[20px]">
+                        <a class="bg-secondary px-5 py-2 rounded hover:bg-red-600 duration-300 text-lg col-span-2" href="{{resume_url}}" target="_blank">Download CV</a>
+
+                        <a class="px-5 py-2 rounded border border-primary hover:bg-black hover:text-accent duration-300 text-lg" target="_blank" href="{{contact.github}}">Github</a>
+                        <a class="px-5 py-2 rounded border border-[#AAD6FF] hover:bg-[#AAD6FF] hover:text-black duration-300 text-lg" target="_blank" href="{{contact.linkedin}}">LinkedIn</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Section End -->
+
+    <!-- About Section Start -->
+    <section class="w-full  bg-black sm:py-[50px] py-[50px]" id="about">
+        <h1 class="text-3xl font-bold text-accent mb-8 text-center">About Me</h1>
+        <div class="max-w-[1200px] mx-auto px-[25px] py-[10px]">
+            <div class="grid sm:grid-cols-2 grid-cols-1 text-accent items-center bg-[#04152D] p-[50px] rounded-md">
+                <figure class="relative">
+                    <img src="{{avtar}}" alt=""  class="relative z-[2]  h-[50%] rounded-md md:max-w-[60%]">
+                </figure>
+                <div>
+                    <h1 class="sm:text-[40px] text-[35px] font-bold">{{role}} Developer</h1>
+                    <p class="sm:text-[20px] text-[20px] pt-[30px]">{{about}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section End -->
+
+    <!-- Projects Section Start -->
+   <section class="py-12 bg-black lg:h-[100%]" id="projects">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-accent mb-8 text-center">Projects</h2>
+        <div class="flex flex-wrap justify-center gap-8">
+            {{#each project_data}}
+                <div class="bg-[#04152D] rounded-lg shadow-lg overflow-hidden max-w-xs group">
+                    <img src="{{projectImage}}" alt="Project Screenshot" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-primary mb-2">{{projectTitle}}</h3>
+                        <p class="text-gray-400 text-sm mb-4">{{projectDescription}}</p>
+                        <div class="flex flex-wrap gap-1 mb-4">
+                            {{#each techstack}}
+                                <span class="bg-primary text-accent text-xs font-medium px-2 py-1 rounded">{{this}}</span>
+                            {{/each}}
+                        </div>
+                        <div class="flex justify-around mt-5">
+                            <a href="{{demoLink}}" class="bg-primary text-accent text-sm font-bold py-1 px-3 rounded hover:bg-blue-800" target="_blank">Demo</a>
+                            <a href="{{githubLink}}" class="bg-gray-500 text-accent text-sm font-bold py-1 px-3 rounded hover:bg-gray-700" target="_blank">Source</a>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</section>
+
+
+    <!-- Tech Stack Section Start -->
+    <section class="py-12  bg-black h-[50vh] mt-10" id="techstack">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-accent mb-8 text-center">Tech Stack</h2>
+            <div class="flex flex-wrap justify-center gap-8">
+                {{#each techstack}}
+                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center gap-2">
+                    <img src="{{this.url}}" alt="{{this.name}}" class="w-16 h-16">
+                    <span class="text-lg font-semibold">{{this.name}}</span>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section End -->
+    <section class="py-20 bg-black " id="github">
+    <div class="container mx-auto px-4 ">
+        <h2 class="text-3xl font-bold text-accent mb-8 text-center">GitHub Profile</h2>
+        <div class="flex flex-wrap justify-center  gap-8">
+            <div class="bg-[#04152D] border p-4 rounded-lg shadow-md  flex flex-col items-center gap-4">
+                <img src="{{githubdata.avatar_url}}" alt="Profile Picture" class="w-32 h-32 rounded-full border-2 border-blue-900">
+                <h3 class="text-xl font-bold">{{githubdata.name}}</h3>
+                <p class="text-sm text-gray-700 mb-4">{{githubdata.bio}}</p>
+                <a href="{{githubdata.html_url}}" class="bg-blue-900 text-white text-sm font-bold py-2 px-4 rounded hover:bg-blue-700">View GitHub Profile</a>
+                <div class="flex gap-4 mt-4">
+                    <div class="text-center">
+                        <h4 class="text-lg font-semibold text-blue-900">{{githubdata.public_repos}}</h4>
+                        <p class="text-sm text-gray-600">Repos</p>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="text-lg font-semibold text-blue-900">{{githubdata.followers}}</h4>
+                        <p class="text-sm text-gray-600">Followers</p>
+                    </div>
+                    <div class="text-center">
+                        <h4 class="text-lg font-semibold text-blue-900">{{githubdata.following}}</h4>
+                        <p class="text-sm text-gray-600">Following</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-black" id="contact">
+    <div class="container mx-auto px-8">
+        <h2 class="text-3xl font-bold text-center text-white mb-8">Contact Information</h2>
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <div class="bg-[#04152D] p-4 rounded-lg shadow-md flex flex-col items-center gap-4">
+                <i class="fa-solid fa-phone text-white text-3xl"></i>
+                <div class="text-center">
+                    <h3 class="text-xl font-bold text-white">Mobile</h3>
+                    <p class="text-sm text-gray-400 mb-4">{{contact.mobile}}</p>
+                </div>
+            </div>
+            <div class="bg-[#04152D] p-4 rounded-lg shadow-md flex flex-col items-center gap-4">
+                <i class="fa-regular fa-envelope text-white text-3xl"></i>
+                <div class="text-center">
+                    <h3 class="text-xl font-bold text-white">Email</h3>
+                    <p class="text-sm text-gray-400 mb-4">{{contact.email}}</p>
+                </div>
+            </div>
+            <div class="bg-[#04152D] p-4 rounded-lg shadow-md flex flex-col items-center gap-4">
+                <i class="fa-brands fa-linkedin-in text-white text-3xl"></i>
+                <div class="text-center">
+                    <h3 class="text-xl font-bold text-white">LinkedIn</h3>
+                    <a href="{{contact.linkedin}}" class="text-blue-500 text-sm font-bold hover:text-blue-300" target="_blank">{{contact.linkedin}}</a>
+                </div>
+            </div>
+            <div class="bg-[#04152D] p-4 rounded-lg shadow-md flex flex-col items-center gap-4">
+                <i class="fa-brands fa-github text-white text-3xl"></i>
+                <div class="text-center">
+                    <h3 class="text-xl font-bold text-white">GitHub</h3>
+                    <a href="{{githubdata.html_url}}" target="_blank" class="text-blue-500 text-sm font-bold hover:text-blue-300">{{githubdata.html_url}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-gray-900 text-white py-8">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col lg:flex-row justify-between items-center gap-8">
+            <!-- Logo and Description -->
+            <div class="text-center lg:text-left">
+                <h2 class="text-2xl font-bold mb-2">{{name}}'s Portfolio</h2>
+                <p class="text-gray-400">Showcasing my work and skills as a front-end developer. <br> Explore my projects, learn about my tech stack, and find out <br> how to get in touch with me.</p>
+            </div>
+            <!-- Navigation Links -->
+            <div class="flex flex-col lg:flex-row gap-4 text-center">
+                <a href="#" class="hover:text-blue-400">Home</a>
+                <a href="#about" class="hover:text-blue-400">About Us</a>
+                <a href="#projects" class="hover:text-blue-400">Projects</a>
+                <a href="#contact" class="hover:text-blue-400">Contact</a>
+            </div>
+            <!-- Social Media Icons -->
+            <div class="flex gap-4">
+              
+               
+                <a href="https://linkedin.com" class="text-gray-400 hover:text-blue-500" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com" class="text-gray-400 hover:text-gray-400" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:your-email@example.com" class="text-gray-400 hover:text-blue-500" target="_blank">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+        <div class="mt-8 text-center">
+            <p class="text-gray-500 text-sm">&copy; 2024 Bittu's Portfolio. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+    <script>
+        // Toggle menu function
+        const navLinks = document.querySelector('.nav-links');
+        function onToggleMenu(e) {
+            e.name = e.name === 'menu' ? 'close' : 'menu';
+            navLinks.classList.toggle('top-0');
+        }
+
+        // Initialize Swiper
+        
+    </script>
+</body>
+</html>

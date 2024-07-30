@@ -23,6 +23,8 @@
     "email-verifier": "^0.4.1",
     "email-verifier-node": "^0.0.2",
     "express": "^4.19.2",
+    "handlebars": "^4.7.8",
+    "hbs": "^4.2.0",
     "jsonwebtoken": "^9.0.2",
     "kickbox": "^2.0.4",
     "mongoose": "^8.4.3",
