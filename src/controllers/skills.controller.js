@@ -22,7 +22,7 @@ const skillsController = asyncHandler(async (req, res) => {
     if(role_description1[0]=="#"){
       role_description = role_description.slice(1)
     }
-    
+    //
   }
   if (!skillsUrl || !skillsName || !role) {
     return res.status(400).json({ message: "Please provide skills" });
