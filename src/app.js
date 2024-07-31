@@ -70,18 +70,18 @@ app.get("/:id", async (req, res) => {
         techstack: n,
       };
     });
-    let githubId = "";
-    for (let i = personalDetails.github.length - 1; i > 0; i--) {
-      if (personalDetails.github[i] != "/") {
-        githubId = githubId + personalDetails.github[i];
-      } else {
-        githubId=githubId.split("").reverse().join("")
-        break;
-      }
-    }
+    // let githubId = "";
+    // for (let i = personalDetails.github.length - 1; i > 0; i--) {
+    //   if (personalDetails.github[i] != "/") {
+    //     githubId = githubId + personalDetails.github[i];
+    //   } else {
+    //     githubId=githubId.split("").reverse().join("")
+    //     break;
+    //   }
+    // }
    
-    const githubDat = await gihubData(githubId);
-    console.log(githubDat);
+    // const githubDat = await gihubData(githubId);
+    // console.log(githubDat);
     // const project = Project.find;
     res.render("index", {
       project_data: newProject,
@@ -98,7 +98,7 @@ app.get("/:id", async (req, res) => {
       about: personalDetails.summary,
       resume_url: resume.url,
       githuburl: personalDetails.github,
-      githubdata:githubDat,
+      
       avtar: user.avtar,
     });
   
