@@ -100,7 +100,7 @@ const getProject = asyncHandler(async (req, res) => {
       return ele
 
     })
-    console.log(newData);
+   
     res.status(200).json({data:newData, success: true });
   } catch (error) {
     res.status(500).json({ message: "Server error", success: false });

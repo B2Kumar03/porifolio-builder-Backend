@@ -11,7 +11,7 @@ const skillsController = asyncHandler(async (req, res) => {
   )}`;
 
   const role_description = await generator(prompt);
-  console.log(role_description);
+ 
   if (role_description == null) {
     return res.status(400).json({ message: "Role description not generated" });
   }
