@@ -10,10 +10,19 @@ const skillsController = asyncHandler(async (req, res) => {
     ", "
   )}`;
 
-  const role_description = await generator(prompt);
- 
-  if (role_description == null) {
+  const role_description1 = await generator(prompt);
+  
+  
+  if (role_description1 == null) {
     return res.status(400).json({ message: "Role description not generated" });
+  }
+  let role_description
+  if(role_description1[0]=="#"){
+    role_description = role_description1.slice(1)
+    if(role_description1[0]=="#"){
+      role_description = role_description.slice(1)
+    }
+    
   }
   if (!skillsUrl || !skillsName || !role) {
     return res.status(400).json({ message: "Please provide skills" });
