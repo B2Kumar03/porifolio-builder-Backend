@@ -162,15 +162,11 @@
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-accent mb-8 text-center">Tech Stack</h2>
             <div class="flex flex-wrap justify-center gap-8">
-                {{#each techstack_data}}
-                    <div class="bg-[#04152D] rounded-lg shadow-lg overflow-hidden max-w-xs p-4">
-                        <h3 class="text-xl font-bold text-primary mb-2">{{title}}</h3>
-                        <ul class="list-disc list-inside text-accent">
-                            {{#each items}}
-                                <li>{{this}}</li>
-                            {{/each}}
-                        </ul>
-                    </div>
+                {{#each techstack}}
+                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center gap-2">
+                    <img src="{{this.url}}" alt="{{this.name}}" class="w-16 h-16 object-contain">
+                    <span class="text-sm font-medium text-gray-600">{{this.name}}</span>
+                </div>
                 {{/each}}
             </div>
         </div>
@@ -178,38 +174,36 @@
     <!-- Tech Stack Section End -->
 
     <!-- Contact Section Start -->
-    <section class="py-12 bg-black text-accent" id="contact">
+    <section class="py-12  bg-black max-w-[90%] m-auto " id="contact">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-accent mb-8 text-center">Contact</h2>
-            <div class="flex flex-col items-center justify-center text-center">
-                <p class="mb-4">Feel free to reach out to me via email or connect with me on social media.</p>
-                <div class="flex flex-wrap justify-center gap-8">
-                    <a href="mailto:{{contact.email}}" class="bg-primary text-accent text-sm font-bold py-2 px-4 rounded hover:bg-blue-800"><i class="fas fa-envelope mr-2"></i>Email</a>
-                    <a href="{{contact.github}}" target="_blank" class="bg-gray-500 text-accent text-sm font-bold py-2 px-4 rounded hover:bg-gray-700"><i class="fab fa-github mr-2"></i>GitHub</a>
-                    <a href="{{contact.linkedin}}" target="_blank" class="bg-[#AAD6FF] text-black text-sm font-bold py-2 px-4 rounded hover:bg-[#AAD6FF]"><i class="fab fa-linkedin mr-2"></i>LinkedIn</a>
-                </div>
+            <div class="max-w-[600px] mx-auto">
+                <form action="https://getform.io/f/{{getform}}" method="POST" class="space-y-4">
+                    <div class="flex gap-4">
+                        <input type="text" name="name" placeholder="Your Name" class="w-1/2 p-2 rounded bg-gray-800 text-white" required>
+                        <input type="email" name="email" placeholder="Your Email" class="w-1/2 p-2 rounded bg-gray-800 text-white" required>
+                    </div>
+                    <input type="text" name="subject" placeholder="Subject" class="w-full p-2 rounded bg-gray-800 text-white" required>
+                    <textarea name="message" rows="5" placeholder="Your Message" class="w-full p-2 rounded bg-gray-800 text-white" required></textarea>
+                    <button type="submit" class="w-full py-2 bg-primary text-white rounded hover:bg-blue-700">Send Message</button>
+                </form>
             </div>
         </div>
     </section>
     <!-- Contact Section End -->
 
     <script>
-        function onToggleMenu(e){
+        function onToggleMenu(e) {
             let elem = document.querySelector('.nav-links');
-            elem.classList.toggle('top-[8%]')
-            if(e.getAttribute('name') === 'menu'){
-                e.setAttribute('name', 'close')
-            }
-            else {
-                e.setAttribute('name', 'menu')
-            }
+            elem.classList.toggle('top-[9%]');
+            elem.classList.toggle('top-[-100%]');
         }
 
+        // Close the menu when a tab is clicked
         document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function() {
-                let menuIcon = document.querySelector('ion-icon[name="close"]');
-                if (menuIcon) {
-                    onToggleMenu(menuIcon);
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 768) {
+                    onToggleMenu();
                 }
             });
         });
