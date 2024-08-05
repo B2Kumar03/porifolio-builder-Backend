@@ -92,7 +92,7 @@
                         </ul>
                     </div>
                     <div class="flex items-center gap-6 md:hidden">
-                        <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer text-primary"></ion-icon>
+                        <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer text-accent"></ion-icon>
                     </div>
                 </nav>
             </header>
@@ -101,7 +101,7 @@
                 <h4 class="text-[25px] py-[20px]">{{role_description}}</h4>
                 <div class="max-w-[700px] mx-auto sm:px-[10px] px-[40px]">
                     <form action="" class="grid sm:grid-cols-5 grid-cols-1 gap-[20px]">
-                        <a class="bg-secondary px-5 py-2 rounded hover:bg-red-600 duration-300 text-lg col-span-2" href="{{resume_url}}" target="_blank">Download CV</a>
+                        <a class="bg-secondary px-5 py-2 rounded hover:bg-red-600 duration-300 text-lg col-span-2" href="{{resume_url}}" target="_blank" download>Download CV</a>
 
                         <a class="px-5 py-2 rounded border border-primary hover:bg-black hover:text-accent duration-300 text-lg" target="_blank" href="{{contact.github}}">Github</a>
                         <a class="px-5 py-2 rounded border border-[#AAD6FF] hover:bg-[#AAD6FF] hover:text-black duration-300 text-lg" target="_blank" href="{{contact.linkedin}}">LinkedIn</a>
@@ -162,134 +162,57 @@
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-accent mb-8 text-center">Tech Stack</h2>
             <div class="flex flex-wrap justify-center gap-8">
-                {{#each techstack}}
-                <div class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center gap-2">
-                    <img src="{{this.url}}" alt="{{this.name}}" class="w-16 h-16">
-                    <span class="text-lg font-semibold">{{this.name}}</span>
-                </div>
+                {{#each techstack_data}}
+                    <div class="bg-[#04152D] rounded-lg shadow-lg overflow-hidden max-w-xs p-4">
+                        <h3 class="text-xl font-bold text-primary mb-2">{{title}}</h3>
+                        <ul class="list-disc list-inside text-accent">
+                            {{#each items}}
+                                <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+                    </div>
                 {{/each}}
             </div>
         </div>
     </section>
-
     <!-- Tech Stack Section End -->
-    {{!-- <section class="py-20 bg-black " id="github">
-    <div class="container mx-auto px-4 ">
-        <h2 class="text-3xl font-bold text-accent mb-8 text-center">GitHub Profile</h2>
-        <div class="flex flex-wrap justify-center  gap-8">
-            <div class="bg-[#04152D] border p-4 rounded-lg shadow-md  flex flex-col items-center gap-4">
-                <img src="{{githubdata.avatar_url}}" alt="Profile Picture" class="w-32 h-32 rounded-full border-2 border-blue-900">
-                <h3 class="text-xl font-bold">{{githubdata.name}}</h3>
-                <p class="text-sm text-gray-700 mb-4">{{githubdata.bio}}</p>
-                <a href="{{githubdata.html_url}}" class="bg-blue-900 text-white text-sm font-bold py-2 px-4 rounded hover:bg-blue-700">View GitHub Profile</a>
-                <div class="flex gap-4 mt-4">
-                    <div class="text-center">
-                        <h4 class="text-lg font-semibold text-blue-900">{{githubdata.public_repos}}</h4>
-                        <p class="text-sm text-gray-600">Repos</p>
-                    </div>
-                    <div class="text-center">
-                        <h4 class="text-lg font-semibold text-blue-900">{{githubdata.followers}}</h4>
-                        <p class="text-sm text-gray-600">Followers</p>
-                    </div>
-                    <div class="text-center">
-                        <h4 class="text-lg font-semibold text-blue-900">{{githubdata.following}}</h4>
-                        <p class="text-sm text-gray-600">Following</p>
-                    </div>
+
+    <!-- Contact Section Start -->
+    <section class="py-12 bg-black text-accent" id="contact">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-accent mb-8 text-center">Contact</h2>
+            <div class="flex flex-col items-center justify-center text-center">
+                <p class="mb-4">Feel free to reach out to me via email or connect with me on social media.</p>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <a href="mailto:{{contact.email}}" class="bg-primary text-accent text-sm font-bold py-2 px-4 rounded hover:bg-blue-800"><i class="fas fa-envelope mr-2"></i>Email</a>
+                    <a href="{{contact.github}}" target="_blank" class="bg-gray-500 text-accent text-sm font-bold py-2 px-4 rounded hover:bg-gray-700"><i class="fab fa-github mr-2"></i>GitHub</a>
+                    <a href="{{contact.linkedin}}" target="_blank" class="bg-[#AAD6FF] text-black text-sm font-bold py-2 px-4 rounded hover:bg-[#AAD6FF]"><i class="fab fa-linkedin mr-2"></i>LinkedIn</a>
                 </div>
             </div>
         </div>
-    </div>
-</section> --}}
-
-<section class="py-20 bg-black max-w-[90%] m-auto" id="contact">
-    <div class="container mx-auto px-8">
-        <h2 class="text-3xl font-bold text-center text-white mb-8">Contact Information</h2>
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-            <div class="bg-[#04152D] p-4 rounded-lg shadow-md flex flex-col items-center gap-4">
-                <i class="fa-solid fa-phone text-white text-3xl"></i>
-                <div class="text-center">
-                    <h3 class="text-xl font-bold text-white">Mobile</h3>
-                    <p class="text-sm text-gray-400 mb-4">{{contact.mobile}}</p>
-                </div>
-            </div>
-            <div class="bg-[#04152D] p-4 rounded-lg shadow-md flex flex-col items-center gap-4">
-                <i class="fa-regular fa-envelope text-white text-3xl"></i>
-                <div class="text-center">
-                    <h3 class="text-xl font-bold text-white">Email</h3>
-                    <p class="text-sm text-gray-400 mb-4">{{contact.email}}</p>
-                </div>
-            </div>
-            <div class="bg-[#04152D] p-4 rounded-lg shadow-md flex flex-col items-center gap-4">
-                <i class="fa-brands fa-linkedin-in text-white text-3xl"></i>
-                <div class="text-center">
-                    <h3 class="text-xl font-bold text-white">LinkedIn</h3>
-                    <a href="{{contact.linkedin}}" class="text-blue-500 text-sm font-bold hover:text-blue-300" target="_blank">{{contact.linkedin}}</a>
-                </div>
-            </div>
-            <div class="bg-[#04152D] p-4 rounded-lg shadow-md flex flex-col items-center gap-4">
-                <i class="fa-brands fa-github text-white text-3xl"></i>
-                <div class="text-center">
-                    <h3 class="text-xl font-bold text-white">GitHub</h3>
-                    <a href="{{contact.github}}" target="_blank" class="text-blue-500 text-sm font-bold hover:text-blue-300">{{contact.github}}</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<footer class="bg-gray-900 text-white py-8">
-    <div class="container mx-auto px-4">
-        <div class="flex flex-col lg:flex-row justify-between items-center gap-8">
-            <!-- Logo and Description -->
-            <div class="text-center lg:text-left">
-                <h2 class="text-2xl font-bold mb-2">{{name}}'s Portfolio</h2>
-                <p class="text-gray-400">Showcasing my work and skills as a front-end developer. <br> Explore my projects, learn about my tech stack, and find out <br> how to get in touch with me.</p>
-            </div>
-            <!-- Navigation Links -->
-            <div class="flex flex-col lg:flex-row gap-4 text-center">
-                <a href="#" class="hover:text-blue-400">Home</a>
-                <a href="#about" class="hover:text-blue-400">About Us</a>
-                <a href="#projects" class="hover:text-blue-400">Projects</a>
-                <a href="#contact" class="hover:text-blue-400">Contact</a>
-            </div>
-            <!-- Social Media Icons -->
-            <div class="flex gap-4">
-              
-               
-                <a href="{{contact.linkedin}}" class="text-gray-400 hover:text-blue-500" target="_blank">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="{{contact.github}}" class="text-gray-400 hover:text-gray-400" target="_blank">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:{{contact.email}}" class="text-gray-400 hover:text-blue-500" target="_blank">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>
-        </div>
-        <div class="mt-8 text-center">
-            <p class="text-gray-500 text-sm">&copy; 2024 {{name}}'s Portfolio. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
-
-
-
-
-
-
-
+    </section>
+    <!-- Contact Section End -->
 
     <script>
-        // Toggle menu function
-        const navLinks = document.querySelector('.nav-links');
-        function onToggleMenu(e) {
-            e.name = e.name === 'menu' ? 'close' : 'menu';
-            navLinks.classList.toggle('top-0');
+        function onToggleMenu(e){
+            let elem = document.querySelector('.nav-links');
+            elem.classList.toggle('top-[8%]')
+            if(e.getAttribute('name') === 'menu'){
+                e.setAttribute('name', 'close')
+            }
+            else {
+                e.setAttribute('name', 'menu')
+            }
         }
 
-        // Initialize Swiper
-        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                let menuIcon = document.querySelector('ion-icon[name="close"]');
+                if (menuIcon) {
+                    onToggleMenu(menuIcon);
+                }
+            });
+        });
     </script>
 </body>
 </html>
