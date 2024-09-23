@@ -16,9 +16,14 @@ import Resume from "./models/uploadResume.model.js";
 import PersonalDetails from "./models/personalDetails.js";
 import Skills from "./models/skills.model.js";
 import { gihubData } from "./github.js";
+import savePlaylist1 from "./routes/saveplaylist.js";
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+
+app.use(express.json({ limit: '50mb' }));  // Adjust the limit as needed
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 
 app.use(cors({
@@ -36,6 +41,8 @@ app.use("/api/v1/users", projectRouter);
 app.use("/api/v1/users", personalDatilsRoutes);
 app.use("/api/v1/users", skills);
 app.use("/api/v1/users", otpSender);
+
+app.use("/api/v1",savePlaylist1)
 
 app.use("/api/v1/users", aiRouter);
 app.use("/api/v1/users", resumeRoute);
