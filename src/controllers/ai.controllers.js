@@ -22,10 +22,10 @@ export const generator = async (prompt) => {
 export const generateDetails = async (req, res) => {
   const { prompt } = req.body;
   try {
-    let prompt = `${prompt}`;
+    let pt = `${prompt}`;
     const model = genAi.getGenerativeModel({ model: "gemini-1.5-flash" });
     let text;
-    let result = await model.generateContent(prompt);
+    let result = await model.generateContent(pt);
     let response = await result.response;
     text = response.text();
     text = `I am ${name}` + " " + text;
