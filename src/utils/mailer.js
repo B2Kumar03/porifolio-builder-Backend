@@ -19,7 +19,10 @@ const sendOTP = (email,name, otp) => {
     `,
     html: `
     <h1>Thank you for registering</h1>
+    <p>Dear ${name},
+    We are excited to have you on board. Your registration is complete, and you can now explore all the features we offer. If you have any questions or need further assistance, feel free to reach out to our support team.
 
+    </p>
     <a>https://bittu-kumar.netlify.app/ </a>`
   };
 
