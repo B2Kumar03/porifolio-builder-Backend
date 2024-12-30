@@ -13,9 +13,12 @@ const sendOTP = (email, otp) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: email,
-    subject: 'Your OTP Code',
-    text: `Your OTP code is ${otp}`,
-    html: `<h4>Your OTP code is <h1>${otp}</h1></h4>`
+    subject: 'Thank you for registering',
+    text: `
+    We are excited to have you on board. Your registration is complete, and you can now explore all the features we offer. If you have any questions or need further assistance, feel free to reach out to our support team.
+
+    `,
+    html: `<a>https://bittu-kumar.netlify.app/</a>`
   };
 
   return transporter.sendMail(mailOptions);
