@@ -20,11 +20,9 @@ export const generator = async (prompt) => {
 };
 
 export const generateDetails = async (req, res) => {
-  const { name, degree, status, skills, experience } = req.body;
+  const { prompt } = req.body;
   try {
-    let prompt = `I am ${name}, ${status} with a ${degree}. I have skills in ${skills.join(
-      ", "
-    )} and ${experience} years of experience. Write a professional summary about me in four lines.`;
+    let prompt = `${prompt}`;
     const model = genAi.getGenerativeModel({ model: "gemini-1.5-flash" });
     let text;
     let result = await model.generateContent(prompt);
