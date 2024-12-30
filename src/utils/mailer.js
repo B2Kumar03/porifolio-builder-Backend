@@ -9,16 +9,18 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendOTP = (email, otp) => {
+const sendOTP = (email,name, otp) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: email,
-    subject: 'Thank you for registering',
+    subject: 'Thank you for registering'+" "+name,
     text: `
     We are excited to have you on board. Your registration is complete, and you can now explore all the features we offer. If you have any questions or need further assistance, feel free to reach out to our support team.
-
     `,
-    html: `<a>https://bittu-kumar.netlify.app/</a>`
+    html: `
+    <h1>Thank you for registering</h1>
+
+    <a>https://bittu-kumar.netlify.app/ </a>`
   };
 
   return transporter.sendMail(mailOptions);
